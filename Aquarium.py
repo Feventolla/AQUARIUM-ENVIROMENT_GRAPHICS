@@ -41,14 +41,16 @@ def draw():
     # glColor3f(66/255., 161/255., 198/255.)
     # glVertex2f(0, 0.)
     glEnd()
-    glBegin(GL_POLYGON)
-    glColor3f(0.118, 0.565, 1.000)
-    glVertex2f(-1.0, 1.0)
-    glVertex2f(1.0, 1.0)
-    glVertex2f(1.0, -1.0)
-    glVertex2f(-1.0, -1.0)
-    glVertex2f(-1.0, 1.0)
-    glEnd()
+    # alternative water color
+    # glBegin(GL_POLYGON)
+    # glColor3f(0.118, 0.565, 1.000)
+    # glVertex2f(-1.0, 1.0)
+    # glVertex2f(1.0, 1.0)
+    # glVertex2f(1.0, -1.0)
+    # glVertex2f(-1.0, -1.0)
+    # glVertex2f(-1.0, 1.0)
+    # glEnd()
+    #full sky blue ###
 
     glLoadIdentity()
     # glTranslated(0.0, bubbleYaxis, 0.0)
@@ -144,10 +146,38 @@ def draw():
     glEnd()
     glPopMatrix()
 
+    # dimond
+    glPushMatrix()
+    glColor3f(0.7255, 0.949, 1.0)
+    glTranslated(-1.5, -0.5, 0.0)
+    glBegin(GL_POLYGON)
+    glVertex2f(1.0, -0.125)
+    glVertex2f(0.92, -0.125)
+    glVertex2f(0.87, -0.17)
+    glVertex2f(1.05, -0.17)
+    glVertex2f(0.87, -0.17)
+    glVertex2f(0.96, -0.3)
+    glVertex2f(1.05, -0.17)
+    glEnd()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslated(-1.5, -0.5, 0.0)
+    glColor3f(1.0, 1.0, 1.0)
+    glBegin(GL_LINE_STRIP)
+    glVertex2f(1.05, -0.17)
+    glVertex2f(1.0, -0.19)
+    glVertex2f(0.92, -0.19)
+    glVertex2f(0.87, -0.17)
+
+    glEnd()
+    glPopMatrix()
+
     glPushMatrix()
     glScalef(1.0, 1.0, 0.0)
     glTranslated(-0.4, 0.0, 0.0)
     # glColor3f(0.4, 0.0, 0.0)
+    # first fish
     glColor3f(0.0, 0.0, 0.1)
     glBegin(GL_POLYGON)
     glVertex2f(0.0, -0.0)
@@ -164,7 +194,7 @@ def draw():
     glColor3f(0.412, 0.412, 0.412)
     glVertex2f(0.5, 0.15)
     glVertex2f(0.5, -0.05)
-    
+
     glEnd()
     glPointSize(4.0)
     glColor3f(1.0, 1.0, 0.0)
@@ -186,17 +216,45 @@ def draw():
     glVertex2f(0.25, 0.17)
 
     glEnd()
+    glPopMatrix()
+# second fish
+    glPushMatrix()
+    glScalef(1.0, 1.0, 0.0)
+    glTranslated(-0.4, 0.0, 0.0)
+    glColor3f(0.4, 0.0, 0.0)
+    glBegin(GL_POLYGON)
+    glVertex2f(0.7, -0.1)
+    glVertex2f(0.75, -0.07)
+    glVertex2f(0.85, -0.07)
+    glVertex2f(0.90, -0.1)
+    glVertex2f(0.85, -0.14)
+    glVertex2f(0.75, -0.14)
+    glEnd()
 
-    # glColor3f(0.8, 0.0, 0.0)
-    # glBegin(GL_TRIANGLES)
-    # glVertex2f(0.795, 0.035)
-    # glVertex2f(0.77, -0.02)
-    # glVertex2f(0.75, -0.007)
-    # glEnd()
+    glColor3f(0.863, 0.863, 0.863)
+    glTranslated(0.051, -0.05, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.83, -0.05)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.9, -0.09)
+    glVertex2f(0.9, -0.01)
+    glEnd()
+    glPointSize(4.0)
+    glColor3f(1.0, 1.0, 0.0)
+    glBegin(GL_POINTS)
+    glVertex2f(0.7, -0.036)
+    glEnd()
+
+    glColor3f(1.0, 1.0, 1.0)
+    glTranslated(-0.015, 0.03, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.79, -0.125)
+    glVertex2f(0.77, -0.07)
+    glVertex2f(0.75, -0.095)
+    glEnd()
 
     glPopMatrix()
 
-    glFlush()
     # glutSwapBuffers()
 
 
@@ -249,6 +307,7 @@ def draw():
     # glVertex3f(-0.07, 0.0, 0.0)
     # glVertex3f(-0.04, 0.08, 0.0)
     # glEnd()
+    glFlush()
 
 
 def main():
