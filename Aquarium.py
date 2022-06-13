@@ -1,12 +1,16 @@
+
 import pygame
 import numpy as np
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
 from pygame.locals import *
 from math import *
+from OpenGL.GL import*
+from OpenGL.GLU import*
+from OpenGL.GLUT import*
+import sys
+# import math
 
-bubbleYaxis = -4.0
+global bubblepath
+bubblepath = -0.5
 
 points = [-0.1, -0.19, -0.28, -0.37, -0.46, -
           0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
@@ -16,13 +20,149 @@ value = [-3.6, -3.4, -3.2, - 3.0, -2.8, -2.6, -2.4, -
 
 
 def init():
-    pygame.init()
-    display = (900, 600)
-    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+    glClearColor(0.0, 0.0, 0.0, 1.0)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    glClearColor(0.0, 0.0, 0.0, 1.0)
     gluOrtho2D(-1.0, 1.0, -1.0, 1.0)
+
+
+def move_time(key):
+    global bubblepath
+    if(bubblepath > 2.0):
+        bubblepath = -0.5
+    bubblepath += 0.02
+
+    glutPostRedisplay()
+    glutTimerFunc(5, move_time, 0)
+
+
+def circle_bubbles():
+    glLoadIdentity()
+
+    for l in points:
+        glPushMatrix()
+        glScalef(1.0, 1.0, 0.0)
+        glTranslated(0.8, l, 0.0)
+        posx, posy = 0, 0
+        sides = 32
+        radius = 0.03
+        glTranslated(0.0, bubblepath, 0.0)
+        glBegin(GL_LINE_LOOP)
+        glColor3f(1.0, 1.0, 1.0)
+        for i in range(200):
+            cosine = radius * cos(i*2*pi/sides)
+            sine = radius * sin(i*2*pi/sides)
+            glVertex2f(cosine, sine)
+        glEnd()
+        glPopMatrix()
+
+    for k in points:
+        glPushMatrix()
+        glScalef(1.0, 1.0, 0.0)
+        glTranslated(-0.9, k, 0.0)
+        posx, posy = 0, 0
+        sides = 32
+        radius = 0.03
+        glTranslated(0.0, bubblepath, 0.0)
+        glBegin(GL_LINE_LOOP)
+        glColor3f(1.0, 1.0, 1.0)
+        for i in range(100):
+            cosine = radius * cos(i*2*pi/sides)
+            sine = radius * sin(i*2*pi/sides)
+            glVertex2f(cosine, sine)
+        glEnd()
+        glPopMatrix()
+    glutSwapBuffers()
+
+    # glFlush()
+
+
+def fish1():
+    glPushMatrix()
+    glScalef(1.0, 1.0, 0.0)
+    glTranslated(-0.4, 0.0, 0.0)
+    # glColor3f(0.4, 0.0, 0.0)
+    # first fish
+    glColor3f(0.0, 0.0, 0.1)
+    glBegin(GL_POLYGON)
+    glVertex2f(0.0, -0.0)
+    glVertex2f(0.2, 0.1)
+    glVertex2f(0.2, -0.1)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.5, -0.0)
+    glVertex2f(0.2, 0.1)
+    glEnd()
+    glColor3f(0.863, 0.863, 0.863)
+    glTranslated(0.051, -0.05, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.3, 0.05)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.5, 0.15)
+    glVertex2f(0.5, -0.05)
+
+    glEnd()
+    glPointSize(4.0)
+    glColor3f(1.0, 1.0, 0.0)
+    glBegin(GL_POINTS)
+    glVertex2f(0.02, 0.05)
+    glEnd()
+
+    glColor3f(1.0, 1.0, 1.0)
+    glTranslated(-0.015, 0.03, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.1, -0.04)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.19, -0.03)
+    glVertex2f(0.25, -0.13)
+    glColor3f(0.863, 0.863, 0.863)
+    glVertex2f(0.1, 0.08)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.19, 0.07)
+    glVertex2f(0.25, 0.17)
+
+    glEnd()
+    glPopMatrix()
+    glFlush()
+
+
+def fish2():
+    glPushMatrix()
+    glScalef(1.0, 1.0, 0.0)
+    glTranslated(-0.4, 0.0, 0.0)
+    glColor3f(0.4, 0.0, 0.0)
+    glBegin(GL_POLYGON)
+    glVertex2f(0.7, -0.1)
+    glVertex2f(0.75, -0.07)
+    glVertex2f(0.85, -0.07)
+    glVertex2f(0.90, -0.1)
+    glVertex2f(0.85, -0.14)
+    glVertex2f(0.75, -0.14)
+    glEnd()
+
+    glColor3f(0.863, 0.863, 0.863)
+    glTranslated(0.051, -0.05, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.83, -0.05)
+    glColor3f(0.412, 0.412, 0.412)
+    glVertex2f(0.9, -0.09)
+    glVertex2f(0.9, -0.01)
+    glEnd()
+    glPointSize(4.0)
+    glColor3f(1.0, 1.0, 0.0)
+    glBegin(GL_POINTS)
+    glVertex2f(0.7, -0.036)
+    glEnd()
+
+    glColor3f(1.0, 1.0, 1.0)
+    glTranslated(-0.015, 0.03, 0.0)
+    glBegin(GL_TRIANGLES)
+    glVertex2f(0.79, -0.125)
+    glVertex2f(0.77, -0.07)
+    glVertex2f(0.75, -0.095)
+    glEnd()
+
+    glPopMatrix()
+    glFlush()
 
 
 def draw():
@@ -51,41 +191,6 @@ def draw():
     # glVertex2f(-1.0, 1.0)
     # glEnd()
     #full sky blue ###
-
-    glLoadIdentity()
-    # glTranslated(0.0, bubbleYaxis, 0.0)
-    for i in points:
-        glPushMatrix()
-        glScalef(1.0, 1.0, 0.0)
-        glTranslated(0.8, i, 0.0)
-        posx, posy = 0, 0
-        sides = 32
-        radius = 0.03
-        glBegin(GL_LINE_LOOP)
-        glColor3f(1.0, 1.0, 1.0)
-        for i in range(100):
-            cosine = radius * cos(i*2*pi/sides)+posx
-            sine = radius * sin(i*2*pi/sides)+posy
-            glVertex2f(cosine, sine)
-        glEnd()
-        glPopMatrix()
-
-    for i in points:
-        glPushMatrix()
-        glScalef(1.0, 1.0, 0.0)
-        glTranslated(-0.9, i, 0.0)
-        posx, posy = 0, 0
-        sides = 32
-        radius = 0.03
-        glBegin(GL_LINE_LOOP)
-        glColor3f(1.0, 1.0, 1.0)
-        for i in range(100):
-            cosine = radius * cos(i*2*pi/sides)+posx
-            sine = radius * sin(i*2*pi/sides)+posy
-            glVertex2f(cosine, sine)
-        glEnd()
-        glPopMatrix()
-
     glPushMatrix()
     for k in value:
 
@@ -173,156 +278,43 @@ def draw():
     glEnd()
     glPopMatrix()
 
+
+def display():
+    glClear(GL_COLOR_BUFFER_BIT)
     glPushMatrix()
-    glScalef(1.0, 1.0, 0.0)
-    glTranslated(-0.4, 0.0, 0.0)
-    # glColor3f(0.4, 0.0, 0.0)
-    # first fish
-    glColor3f(0.0, 0.0, 0.1)
-    glBegin(GL_POLYGON)
-    glVertex2f(0.0, -0.0)
-    glVertex2f(0.2, 0.1)
-    glVertex2f(0.2, -0.1)
-    glColor3f(0.412, 0.412, 0.412)
-    glVertex2f(0.5, -0.0)
-    glVertex2f(0.2, 0.1)
-    glEnd()
-    glColor3f(0.863, 0.863, 0.863)
-    glTranslated(0.051, -0.05, 0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(0.3, 0.05)
-    glColor3f(0.412, 0.412, 0.412)
-    glVertex2f(0.5, 0.15)
-    glVertex2f(0.5, -0.05)
-
-    glEnd()
-    glPointSize(4.0)
-    glColor3f(1.0, 1.0, 0.0)
-    glBegin(GL_POINTS)
-    glVertex2f(0.02, 0.05)
-    glEnd()
-
-    glColor3f(1.0, 1.0, 1.0)
-    glTranslated(-0.015, 0.03, 0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(0.1, -0.04)
-    glColor3f(0.412, 0.412, 0.412)
-    glVertex2f(0.19, -0.03)
-    glVertex2f(0.25, -0.13)
-    glColor3f(0.863, 0.863, 0.863)
-    glVertex2f(0.1, 0.08)
-    glColor3f(0.412, 0.412, 0.412)
-    glVertex2f(0.19, 0.07)
-    glVertex2f(0.25, 0.17)
-
-    glEnd()
-    glPopMatrix()
-# second fish
-    glPushMatrix()
-    glScalef(1.0, 1.0, 0.0)
-    glTranslated(-0.4, 0.0, 0.0)
-    glColor3f(0.4, 0.0, 0.0)
-    glBegin(GL_POLYGON)
-    glVertex2f(0.7, -0.1)
-    glVertex2f(0.75, -0.07)
-    glVertex2f(0.85, -0.07)
-    glVertex2f(0.90, -0.1)
-    glVertex2f(0.85, -0.14)
-    glVertex2f(0.75, -0.14)
-    glEnd()
-
-    glColor3f(0.863, 0.863, 0.863)
-    glTranslated(0.051, -0.05, 0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(0.83, -0.05)
-    glColor3f(0.412, 0.412, 0.412)
-    glVertex2f(0.9, -0.09)
-    glVertex2f(0.9, -0.01)
-    glEnd()
-    glPointSize(4.0)
-    glColor3f(1.0, 1.0, 0.0)
-    glBegin(GL_POINTS)
-    glVertex2f(0.7, -0.036)
-    glEnd()
-
-    glColor3f(1.0, 1.0, 1.0)
-    glTranslated(-0.015, 0.03, 0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(0.79, -0.125)
-    glVertex2f(0.77, -0.07)
-    glVertex2f(0.75, -0.095)
-    glEnd()
-
+    draw()
     glPopMatrix()
 
-    # glutSwapBuffers()
+    glPushMatrix()
+    fish1()
+    glPopMatrix()
 
+    glPushMatrix()
+    fish2()
+    glPopMatrix()
 
-# def move_time():
-#     if(bubbleYaxis > 3.0):
-#         _bubbleYaxis = (-4.0)
-#     bubbleYaxis += 0.02
-#     glutPostRedisplay()
-    # glutTimerFunc(35, move_time, 0)
-    # for i in points:
-    #     i += 1
-    # glBegin(GL_LINE_LOOP)
-    # glTranslatef(0.0, 0.5, 0.0)
-    # glColor3f(1.0, 1.0, 1.0)
-    # for i in range(100):
-    #     cosine = radius * cos(i*2*pi/sides)+posx
-    #     sine = radius * sin(i*2*pi/sides)+posy
-    #     glVertex2f(cosine, sine)
-    # glEnd()
-    # glMatrixMode(GL_PROJECTION)
-    # glLoadIdentity()
-    # glOrtho(0.0, 500, 0.0, 500, -100, 100)
+    glPushMatrix()
+    circle_bubbles()
+    glPopMatrix()
 
-    # glMatrixMode(GL_MODELVIEW)
-    # glLoadIdentity()
+    # glPushMatrix()
+    # DrawFish3()
+    # glPopMatrix()
 
-    # yellow STAR
-    # glColor3f(1.0, 1.0, 0.0)
-    # glBegin(GL_TRIANGLES)
-    # glVertex3f(0.0, 0.2, 0.0)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(0.17, 0.08, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0.12, -.14, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(-0.12, -.14, 0.0)
-    # glVertex3f(-0.06, 0, 0.0)
-    # glVertex3f(-0.06, 0, 0.0)
-    # glVertex3f(-0.16, 0.08, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glEnd()
-    # glBegin(GL_POLYGON)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(-0.07, 0.0, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glEnd()
     glFlush()
 
 
 def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE)
+    glutInitWindowSize(900, 600)
+    glutInitWindowPosition(50, 50)
+    glutCreateWindow("Aquarium Environment")
     init()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+    glutDisplayFunc(display)
+    glutTimerFunc(5, move_time, 0)
 
-        draw()
-        # glutTimerFunc(35, move_time, 0)
-        # glutMainLoop()
-        pygame.display.flip()
-        pygame.time.wait(10)
+    glutMainLoop()
 
 
 main()
