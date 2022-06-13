@@ -201,22 +201,22 @@ def draw():
 
         glBegin(GL_POLYGON)
         glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
+        glVertex3f(0.4, -0.4, 0.0)
 
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.2, 0.35, 0.0)
+        glVertex3f(0.35, 0.75, 0.0)
+        glVertex3f(0.2, 0.35, 0.0)
         glEnd()
 
         glBegin(GL_LINES)
-        # glColor3f(1.0, 1.0, 1.0)
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
+        glColor3f(1.0, 1.0, 1.0)
+        glVertex3f(0.35, 0.75, 0.0)
+        glVertex3f(0.4, -0.4, 0.0)
         glEnd()
         glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-        # glVertex3f(0.5, 0.35, 0.0)
-        # glVertex3f(0.35, 0.75, 0.0)
+        glColor3f(0.0, 1.0, 0.0)
+        glVertex3f(0.4, -0.4, 0.0)
+        glVertex3f(0.5, 0.35, 0.0)
+        glVertex3f(0.35, 0.75, 0.0)
         glEnd()
         glPopMatrix()
     glPopMatrix()
@@ -279,24 +279,7 @@ def draw():
     glPopMatrix()
 
 
-def display():
-    glClear(GL_COLOR_BUFFER_BIT)
-    glPushMatrix()
-    draw()
-    glPopMatrix()
-
-    glPushMatrix()
-    fish1()
-    glPopMatrix()
-
-    glPushMatrix()
-    fish2()
-    glPopMatrix()
-
-    glPushMatrix()
-    circle_bubbles()
-    glPopMatrix()
-
+def grass():
     for i in range(100):
         i = i/5
         glColor3f(0.0, 1.0, 0.0)
@@ -329,58 +312,31 @@ def display():
     glVertex2f(1, -0.96)
     glEnd()
 
+
+def display():
+    glClear(GL_COLOR_BUFFER_BIT)
+    glPushMatrix()
+    draw()
+    glPopMatrix()
+
+    glPushMatrix()
+    fish1()
+    glPopMatrix()
+
+    glPushMatrix()
+    fish2()
+    glPopMatrix()
+
+    glPushMatrix()
+    circle_bubbles()
+    glPopMatrix()
+
+    glPushMatrix()
+    grass()
+    glPopMatrix()
+
     # glutSwapBuffers()
 
-
-# def move_time():
-#     if(bubbleYaxis > 3.0):
-#         _bubbleYaxis = (-4.0)
-#     bubbleYaxis += 0.02
-#     glutPostRedisplay()
-    # glutTimerFunc(35, move_time, 0)
-    # for i in points:
-    #     i += 1
-    # glBegin(GL_LINE_LOOP)
-    # glTranslatef(0.0, 0.5, 0.0)
-    # glColor3f(1.0, 1.0, 1.0)
-    # for i in range(100):
-    #     cosine = radius * cos(i*2*pi/sides)+posx
-    #     sine = radius * sin(i*2*pi/sides)+posy
-    #     glVertex2f(cosine, sine)
-    # glEnd()
-    # glMatrixMode(GL_PROJECTION)
-    # glLoadIdentity()
-    # glOrtho(0.0, 500, 0.0, 500, -100, 100)
-
-    # glMatrixMode(GL_MODELVIEW)
-    # glLoadIdentity()
-
-    # yellow STAR
-    # glColor3f(1.0, 1.0, 0.0)
-    # glBegin(GL_TRIANGLES)
-    # glVertex3f(0.0, 0.2, 0.0)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(0.17, 0.08, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0.12, -.14, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(-0.12, -.14, 0.0)
-    # glVertex3f(-0.06, 0, 0.0)
-    # glVertex3f(-0.06, 0, 0.0)
-    # glVertex3f(-0.16, 0.08, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glEnd()
-    # glBegin(GL_POLYGON)
-    # glVertex3f(0.04, 0.08, 0.0)
-    # glVertex3f(0.07, 0.0, 0.0)
-    # glVertex3f(0, -.04, 0.0)
-    # glVertex3f(-0.07, 0.0, 0.0)
-    # glVertex3f(-0.04, 0.08, 0.0)
-    # glEnd()
     glFlush()
 
 
