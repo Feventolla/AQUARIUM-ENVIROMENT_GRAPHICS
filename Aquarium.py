@@ -1,4 +1,3 @@
-
 import pygame
 import numpy as np
 from pygame.locals import *
@@ -11,6 +10,9 @@ import sys
 
 global bubblepath
 bubblepath = -0.5
+
+fishX = 4.0
+fishY= 3.0
 
 points = [-0.1, -0.19, -0.28, -0.37, -0.46, -
           0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
@@ -164,6 +166,57 @@ def fish2():
     glPopMatrix()
     glFlush()
 
+def fish3():
+    glScalef(0.6, 0.6, 0.0)
+    glTranslatef(0,0, 0.0) 
+    
+    glColor3f(0.000, 0.749, 1.000)
+    glBegin(GL_POLYGON)
+    glVertex3f(0.428, 0.127, 0.0)
+    glVertex3f(0.517, 0.057, 0.0)
+    glVertex3f(0.499, 0.108, 0.0)
+    glVertex3f(0.488, 0.162, 0.0)
+    glVertex3f(0.486, 0.148, 0.0)
+    glVertex3f(0.497, 0.233, 0.0)
+    glVertex3f(0.514, 0.282, 0.0)
+    glVertex3f(0.528, 0.318, 0.0)
+    glVertex3f(0.429, 0.245, 0.0)
+    glEnd()
+    glColor3f(0.000, 0.749, 1.000)
+    glBegin(GL_POLYGON)
+    glVertex3f(0.160, 0.304, 0.0)
+    glVertex3f(0.177, 0.326, 0.0)
+    glVertex3f(0.193, 0.334, 0.0)
+    glVertex3f(0.221, 0.346, 0.0)
+    glVertex3f(0.224, 0.348, 0.0)
+    glVertex3f(0.244, 0.348, 0.0)
+    glVertex3f(0.265, 0.345, 0.0)
+    glVertex3f(0.303, 0.333, 0.0)
+    glVertex3f(0.276, 0.304, 0.0)
+    glEnd()
+    glColor3f(0.3,0.3,1)
+    glBegin(GL_POLYGON)
+    glVertex3f(0.429, 0.243, 0.0)
+    glVertex3f(0.306, 0.276, 0.0)
+    glVertex3f(0.292, 0.301, 0.0)
+    glVertex3f(0.226, 0.316, 0.0)
+    glVertex3f(0.200, 0.319, 0.0)
+    glVertex3f(0.164, 0.309, 0.0)
+    glVertex3f(0.117, 0.288, 0.0)
+    glVertex3f(0.077, 0.256, 0.0)
+    glVertex3f(0.052, 0.222, 0.0)
+    glVertex3f(0.038, 0.187, 0.0)
+    glVertex3f(0.041, 0.144, 0.0)
+    glVertex3f(0.061, 0.119, 0.0)
+    glVertex3f(0.108, 0.083, 0.0)
+    glVertex3f(0.168, 0.060, 0.0)
+    glVertex3f(0.204, 0.053, 0.0)
+    glVertex3f(0.231, 0.054, 0.0)
+    glVertex3f(0.288, 0.067, 0.0)
+    glVertex3f(0.340, 0.087, 0.0)
+    glVertex3f(0.403, 0.115, 0.0)
+    glVertex3f(0.428, 0.127, 0.0)
+    glEnd()
 
 def draw():
     glClear(GL_COLOR_BUFFER_BIT)
@@ -325,6 +378,10 @@ def display():
 
     glPushMatrix()
     fish2()
+    glPopMatrix()
+
+    glPushMatrix()
+    fish3()
     glPopMatrix()
 
     glPushMatrix()
