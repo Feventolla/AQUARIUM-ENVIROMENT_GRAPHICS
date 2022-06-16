@@ -224,18 +224,19 @@ def fish2():
     glVertex2f(-0.27, -0.6)
     glColor4f(0.1, 0.25, 0.20,0.5)
     glVertex2f(-0.3, -0.53)
-
-    
     glEnd()
+
     glColor3f(1, 1, 1)
     glPointSize(3)
-
-    
-
-
     glBegin(GL_POINTS)
     glVertex2f(0.4, -0.6)
     glEnd()
+
+    # glColor3f(0.7, 0.25, 0.20)
+    # glBegin(GL_LINES)
+    # glVertex2f(0.495, -0.6)
+    # glVertex2f(0.46, -0.6)
+    # glEnd()
    
 
     glPopMatrix()
@@ -303,6 +304,12 @@ def fish3():
     glVertex2f(0.20,0.340)
     glVertex2f(0.22,0.27)
     glEnd()
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex2f(0.041, 0.253)
+    glVertex2f(0.075, 0.253)
+    glEnd()
+
     
     
 
