@@ -22,9 +22,14 @@ onlyPoints = [-0.1, -0.24, -0.41, -0.56]
 
 points = [-0.1, -0.22, -0.34, -0.45, -0.56, -
           0.65, -0.74, -0.83, -0.92, -1.0]
-value = [-3.6, -3.4, -3.2, - 3.0, -2.8, -2.6, -2.4, -
-         2.2, -2.0, -1.8, -1.6, -1.4, -1.2, -1.0, -0.8, -0.6, 2.8, 2.6, 2.4,
-         2.2, 2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 0.8, 0.6]
+value = [-3.6, -3.6,  -2.4, -1.2
+         #  -1.8, -1.2, -0.8, 0.0, 0.4,
+         #          0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
+         ]
+value1 = [-3.6,   -2.4, -1.2, 0.3
+          # -0.6, -0.2, 0.4,
+          #           0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
+          ]
 
 
 def init():
@@ -248,36 +253,69 @@ def draw():
     # glVertex2f(-1.0, 1.0)
     # glEnd()
     #full sky blue ###
-    glPushMatrix()
-    for k in value:
 
+    for k in value:
         glPushMatrix()
         glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -3.5, 0.0)
-        # glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
-
+        glTranslated(k, -4.5, 0.0)
+        posx, posy = 0, 0
+        sides = 65
+        radius = 1.5
         glBegin(GL_POLYGON)
-        glColor3f(0.0, 1.0, 0.0)
-        glVertex3f(0.4, -0.4, 0.0)
 
-        glVertex3f(0.35, 0.75, 0.0)
-        glVertex3f(0.2, 0.35, 0.0)
-        glEnd()
-
-        glBegin(GL_LINES)
-        glColor3f(1.0, 1.0, 1.0)
-        glVertex3f(0.35, 0.75, 0.0)
-        glVertex3f(0.4, -0.4, 0.0)
-        glEnd()
-        glBegin(GL_POLYGON)
         glColor3f(0.0, 1.0, 0.0)
-        glVertex3f(0.4, -0.4, 0.0)
-        glVertex3f(0.5, 0.35, 0.0)
-        glVertex3f(0.35, 0.75, 0.0)
+        for i in range(30):
+            cosine = radius * cos(i/sides)
+            sine = radius * sin(i/sides)
+
+            glVertex2f(sine, cosine)
         glEnd()
         glPopMatrix()
-    glPopMatrix()
+    for k in value1:
+        glPushMatrix()
+        glScalef(0.3, 0.3, 0.0)
+        glTranslated(k, -4.5, 0.0)
+        posx, posy = 0, 0
+        sides = 65
+        radius = 1.5
+        glBegin(GL_POLYGON)
+        glColor3f(0.0, 1.0, 0.0)
+        for i in range(30):
+            cosine = radius * cos(i/sides)
+            sine = radius * sin(i/sides)
 
+            glVertex2f(-sine, cosine)
+        glEnd()
+        glPopMatrix()
+    # glPushMatrix()
+
+        # glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
+        # glPushMatrix()
+        # glScalef(0.3, 0.3, 0.0)
+        # glTranslated(k, -3.8, 0.0)
+        # glBegin(GL_POLYGON)
+        # glColor3f(0.0, 1.0, 0.0)
+        # glVertex3f(0.4, -0.4, 0.0)
+
+        # glVertex3f(0.35, 0.75, 0.0)
+        # glVertex3f(0.2, 0.35, 0.0)
+        # glEnd()
+
+        # glBegin(GL_LINES)
+        # glColor3f(1.0, 1.0, 1.0)
+        # glVertex3f(0.35, 0.75, 0.0)
+        # glVertex3f(0.4, -0.4, 0.0)
+        # glEnd()
+        # glBegin(GL_POLYGON)
+        # glColor3f(0.0, 1.0, 0.0)
+        # glVertex3f(0.4, -0.4, 0.0)
+        # glVertex3f(0.5, 0.35, 0.0)
+        # glVertex3f(0.35, 0.75, 0.0)
+        # glEnd()
+        # glPopMatrix()
+    # glPopMatrix()
+
+    # big rock
     glPushMatrix()
     glScalef(1.0, 1.0, 0.0)
     glTranslated(0.1, -1.0, 0.0)
@@ -293,6 +331,7 @@ def draw():
     glEnd()
     glPopMatrix()
 
+    # small rock
     glPushMatrix()
     glScalef(1.0, 1.0, 0.0)
     glTranslated(-0.9, -1.0, 0.0)
