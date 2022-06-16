@@ -28,7 +28,7 @@ onlyPoints = [-0.1, -0.24, -0.41, -0.56]
 
 points = [-0.1, -0.22, -0.34, -0.45, -0.56, -
           0.65, -0.74, -0.83, -0.92, -1.0]
-<<<<<<< HEAD
+
 value = [-3.6, -3.6,  -2.4, -1.2
          #  -1.8, -1.2, -0.8, 0.0, 0.4,
          #          0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
@@ -37,12 +37,12 @@ value1 = [-3.6,   -2.4, -1.2, 0.3
           # -0.6, -0.2, 0.4,
           #           0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
           ]
-=======
+
 
 value = [-3.6, -3.4, -3.2, - 3.0, -2.8, -2.6, -2.4, -
          2.2, -2.0, -1.8, -1.6, -1.4, -1.2, -1.0, -0.8, -0.6, 2.8, 2.6, 2.4,
          2.2, 2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 0.8, 0.6]
->>>>>>> 92b88ef312592cb850426482ad78d2cdcc7e66ae
+
 
 
 def init():
@@ -321,11 +321,19 @@ def fish3():
     glVertex2f(0.075, 0.253)
     glEnd()
 
+def sand_env() :
+    glScalef(0.6, 0.6, 0.0)
+    # glTranslatef(0,0, 0.0) 
     
+    glColor4f(0.7, 0.4, 0.0,0.0)
+    glColor3f(1,1,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(-0.1,-1)
+    glVertex2f(-1,-0.6)
+    glVertex2f(1,-0.6)
+    glVertex2f(1,1)
+    glEnd()
     
-
-
-
 
 
 def draw():
@@ -355,39 +363,39 @@ def draw():
     # glEnd()
     #full sky blue ###
 
-    for k in value:
-        glPushMatrix()
-        glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -4.5, 0.0)
-        posx, posy = 0, 0
-        sides = 65
-        radius = 1.5
-        glBegin(GL_POLYGON)
+    # for k in value:
+    #     glPushMatrix()
+    #     glScalef(0.3, 0.3, 0.0)
+    #     glTranslated(k, -4.5, 0.0)
+    #     posx, posy = 0, 0
+    #     sides = 65
+    #     radius = 1.5
+    #     glBegin(GL_POLYGON)
 
-        glColor3f(0.0, 1.0, 0.0)
-        for i in range(30):
-            cosine = radius * cos(i/sides)
-            sine = radius * sin(i/sides)
+    #     glColor3f(0.0, 1.0, 0.0)
+    #     for i in range(30):
+    #         cosine = radius * cos(i/sides)
+    #         sine = radius * sin(i/sides)
 
-            glVertex2f(sine, cosine)
-        glEnd()
-        glPopMatrix()
-    for k in value1:
-        glPushMatrix()
-        glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -4.5, 0.0)
-        posx, posy = 0, 0
-        sides = 65
-        radius = 1.5
-        glBegin(GL_POLYGON)
-        glColor3f(0.0, 1.0, 0.0)
-        for i in range(30):
-            cosine = radius * cos(i/sides)
-            sine = radius * sin(i/sides)
+    #         glVertex2f(sine, cosine)
+    #     glEnd()
+    #     glPopMatrix()
+    # for k in value:
+        # glPushMatrix()
+        # glScalef(0.3, 0.3, 0.0)
+        # glTranslated(k, -4.5, 0.0)
+        # posx, posy = 0, 0
+        # sides = 1000
+        # radius = 4
+        # glBegin(GL_POLYGON)
+        # glColor3f(0.0, 1.0, 0.0)
+        # for i in range(30):
+        #     cosine = radius * cos(i/sides)
+        #     sine = radius * sin(i/sides)
 
-            glVertex2f(-sine, cosine)
-        glEnd()
-        glPopMatrix()
+        #     glVertex2f(-sine, cosine)
+        # glEnd()
+        # glPopMatrix()
     # glPushMatrix()
 
         # glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
@@ -473,40 +481,50 @@ def draw():
     glVertex2f(0.87, -0.17)
 
     glEnd()
-    glPopMatrix()
 
+    glPopMatrix()
+    
 
 def grass():
-    for i in range(100):
-        i = i/5
-        glColor3f(0.0, 1.0, 0.0)
-        glLineWidth(2.0)
-        glBegin(GL_LINES)
-        glVertex2f(-0.9+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.8+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.7+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.75+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.85+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.725+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.775+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.825+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glVertex2f(-0.875+i, -0.85)
-        glVertex2f(-0.8+i, -0.95)
-        glEnd()
-
+    glColor3f(1,1,1)
     glBegin(GL_POLYGON)
-    glVertex2f(-1, -0.96)
-    glVertex2f(-1, -1)
-    glVertex2f(1, -1)
-    glVertex2f(1, -0.96)
+    glVertex3f(-0.984620, -0.030759, 0.000157)
+    glVertex3f(-0.881724, -0.136549, 0.000697)
+    glVertex3f(-0.816608, -0.207216, 0.001057)
+    glVertex3f(-0.779634, -0.247701, 0.001264)
+    glVertex3f(-0.761162, -0.262946, 0.001342)
+    glVertex3f(-0.751551, -0.257892, 0.001316)
+    glVertex3f(-0.741164, -0.237480, 0.001212)
+    glVertex3f(-0.720360, -0.206652, 0.001054)
+    glVertex3f(-0.679500, -0.170349, 0.000869)
+    glVertex3f(-0.608944, -0.133511, 0.000681)
+    glVertex3f(-0.499053, -0.101081, 0.000516)
+    glVertex3f(-0.340188, -0.077999, 0.000398)
+    glVertex3f(-0.122708, -0.069207, 0.000353)
+    glVertex3f(0.085513 ,-0.072687 ,0.000371)
+    glVertex3f(0.220006 ,-0.082308 ,0.000420)
+    glVertex3f(0.295516 ,-0.096842 ,0.000494)
+    glVertex3f(0.326790 ,-0.115060 ,0.000587)
+    glVertex3f(0.328573 ,-0.135735 ,0.000693)
+    glVertex3f(0.315610 ,-0.157639 ,0.000804)
+    glVertex3f(0.302647 ,-0.179542 ,0.000916)
+    glVertex3f(0.304429 ,-0.200217 ,0.001022)
+    glVertex3f(0.335703 ,-0.218435 ,0.001114)
+    glVertex3f(0.411214 ,-0.232969 ,0.001189)
+    glVertex3f(0.545706 ,-0.242590 ,0.001238)
+    glVertex3f(0.753927 ,-0.246070 ,0.001255)
+    glVertex3f(0.954431 ,-0.240926 ,0.001229)
+    glVertex3f(1.067590 ,-0.226703 ,0.001157)
+    glVertex3f(1.110873 ,-0.205218 ,0.001047)
+    glVertex3f(1.101749 ,-0.178287 ,0.000910)
+    glVertex3f(1.057686 ,-0.147724 ,0.000754)
+    glVertex3f(0.996155 ,-0.115345 ,0.000589)
+    glVertex3f(0.934623 ,-0.082967 ,0.000423)
+    glVertex3f(0.890561 ,-0.052404 ,0.000267)
+    glVertex3f(0.881437 ,-0.025472 ,0.000130)
+    glVertex3f(0.924720 ,-0.003987 ,0.000020)
+    glVertex3f(1.037879 ,0.010235 ,-0.000052)
+    glVertex3f(1.238383 ,0.015379 ,-0.000078)
     glEnd()
 
 
