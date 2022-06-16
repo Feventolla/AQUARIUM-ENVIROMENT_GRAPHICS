@@ -9,13 +9,26 @@ import sys
 # import math
 
 global bubblepath
-bubblepath = -0.5
+bubblepathx = -0.5
+bubblepathy = -0.5
+largebubblepathx = -0.5
+largebubblepathy = -0.5
+fish1path = 0.8
+
 
 fishX = 4.0
 fishY= 3.0
 
 points = [-0.1, -0.19, -0.28, -0.37, -0.46, -
           0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
+
+onlyPoints = [-0.1, -0.24, -0.41, -0.56]
+
+#   -0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
+
+points = [-0.1, -0.22, -0.34, -0.45, -0.56, -
+          0.65, -0.74, -0.83, -0.92, -1.0]
+
 value = [-3.6, -3.4, -3.2, - 3.0, -2.8, -2.6, -2.4, -
          2.2, -2.0, -1.8, -1.6, -1.4, -1.2, -1.0, -0.8, -0.6, 2.8, 2.6, 2.4,
          2.2, 2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 0.8, 0.6]
@@ -29,13 +42,29 @@ def init():
 
 
 def move_time(key):
-    global bubblepath
-    if(bubblepath > 2.0):
-        bubblepath = -0.5
-    bubblepath += 0.02
+    global bubblepathx, largebubblepathx, bubblepathy, largebubblepathy, fish1path
+    if(bubblepathx > 2.0):
+        bubblepathx = -0.6
+    bubblepathx += 0.03
+
+    if(largebubblepathx > 2):
+        largebubblepathx = -.5
+    largebubblepathx += 0.03
+
+    if(bubblepathy > 2):
+        bubblepathy = -.5
+    bubblepathy += 0.02
+
+    if(largebubblepathy > 2):
+        largebubblepathy = -.5
+    largebubblepathy += 0.02
+
+    if(fish1path < -2):
+        fish1path = 0.8
+    fish1path -= 0.008
 
     glutPostRedisplay()
-    glutTimerFunc(5, move_time, 0)
+    glutTimerFunc(10, move_time, 0)
 
 
 def circle_bubbles():
@@ -44,11 +73,11 @@ def circle_bubbles():
     for l in points:
         glPushMatrix()
         glScalef(1.0, 1.0, 0.0)
-        glTranslated(0.8, l, 0.0)
+        glTranslated(0.9, l, 0.0)
         posx, posy = 0, 0
         sides = 32
-        radius = 0.03
-        glTranslated(0.0, bubblepath, 0.0)
+        radius = 0.02
+        glTranslated(0.0, bubblepathx, 0.0)
         glBegin(GL_LINE_LOOP)
         glColor3f(1.0, 1.0, 1.0)
         for i in range(200):
@@ -64,8 +93,41 @@ def circle_bubbles():
         glTranslated(-0.9, k, 0.0)
         posx, posy = 0, 0
         sides = 32
-        radius = 0.03
-        glTranslated(0.0, bubblepath, 0.0)
+        radius = 0.02
+        glTranslated(0.0, bubblepathy, 0.0)
+        glBegin(GL_LINE_LOOP)
+        glColor3f(1.0, 1.0, 1.0)
+        for i in range(100):
+            cosine = radius * cos(i*2*pi/sides)
+            sine = radius * sin(i*2*pi/sides)
+            glVertex2f(cosine, sine)
+        glEnd()
+        glPopMatrix()
+
+    for d in onlyPoints:
+        glPushMatrix()
+        glScalef(1.0, 1.0, 0.0)
+        glTranslated(-0.9, d, 0.0)
+        posx, posy = 0, 0
+        sides = 32
+        radius = 0.04
+        glTranslated(0.0, largebubblepathx, 0.0)
+        glBegin(GL_LINE_LOOP)
+        glColor3f(1.0, 1.0, 1.0)
+        for i in range(100):
+            cosine = radius * cos(i*2*pi/sides)
+            sine = radius * sin(i*2*pi/sides)
+            glVertex2f(cosine, sine)
+        glEnd()
+        glPopMatrix()
+    for j in onlyPoints:
+        glPushMatrix()
+        glScalef(1.0, 1.0, 0.0)
+        glTranslated(0.9, j, 0.0)
+        posx, posy = 0, 0
+        sides = 32
+        radius = 0.04
+        glTranslated(0.0, largebubblepathy, 0.0)
         glBegin(GL_LINE_LOOP)
         glColor3f(1.0, 1.0, 1.0)
         for i in range(100):
@@ -82,7 +144,7 @@ def circle_bubbles():
 def fish1():
     glPushMatrix()
     glScalef(1.0, 1.0, 0.0)
-    glTranslated(-0.4, 0.0, 0.0)
+    glTranslated(fish1path, 0.0, 0.0)
     # glColor3f(0.4, 0.0, 0.0)
     # first fish
     glColor3f(0.0, 0.0, 0.1)
@@ -412,7 +474,7 @@ def main():
     glutCreateWindow("Aquarium Environment")
     init()
     glutDisplayFunc(display)
-    glutTimerFunc(5, move_time, 0)
+    glutTimerFunc(35, move_time, 0)
 
     glutMainLoop()
 
