@@ -53,9 +53,13 @@ value = [-3.6,  -3.2, -2.8, -2.4, -2.0,
          0.4, 3.2, 3.6, 2.8,  2.4,
          2.0,  1.6,  1.2,  0.8
          ]
-# value1 = [-3.2,  -2.8, -2.4, -
-#           -2.0, -1.6,  -1.2,  -0.8,  2.8,  2.4,
-#           2.0,  1.6,  1.2,  0.8, ]
+
+grassX = [-0.2,-0.37,-0.1,0.09,0.1,0.2,0.3,0.42,0.5,
+          0.9,1,1.1,1.2,1.32,1.5,1.6,1.45]
+
+grassY = [-0.35,-0.33,-0.4, -0.4,-0.3,-0.35,-0.35,-0.4,-0.3,
+            -0.3,-0.35,-0.43,-0.3,-0.36,-0.36,-0.1,-0.21]
+
 
 
 
@@ -97,7 +101,7 @@ def move_time(key):
     fish2pathy += 0.004
 
     glutPostRedisplay()
-    glutTimerFunc(10, move_time, 0)
+    glutTimerFunc(25, move_time, 0)
 
 
 def circle_bubbles():
@@ -267,11 +271,7 @@ def fish2():
     glVertex2f(0.4, -0.6)
     glEnd()
 
-    # glColor3f(0.7, 0.25, 0.20)
-    # glBegin(GL_LINES)
-    # glVertex2f(0.495, -0.6)
-    # glVertex2f(0.46, -0.6)
-    # glEnd()
+    
    
 
 
@@ -351,22 +351,6 @@ def fish3():
     glVertex2f(0.075, 0.253)
     glEnd()
 
-    
-
-def sand_env() :
-    glScalef(0.6, 0.6, 0.0)
-    # glTranslatef(0,0, 0.0) 
-    
-    glColor4f(0.7, 0.4, 0.0,0.0)
-    glColor3f(1,1,0)
-    glBegin(GL_POLYGON)
-    glVertex2f(-0.1,-1)
-    glVertex2f(-1,-0.6)
-    glVertex2f(1,-0.6)
-    glVertex2f(1,1)
-    glEnd()
-    
-
 
 def draw():
     glClear(GL_COLOR_BUFFER_BIT)
@@ -412,120 +396,8 @@ def draw():
         glPopMatrix()
 
 
-    # for k in value:
-    #     glPushMatrix()
-    #     glScalef(0.3, 0.3, 0.0)
-    #     glTranslated(k, -4.5, 0.0)
-    #     posx, posy = 0, 0
-    #     sides = 65
-    #     radius = 1.5
-    #     glBegin(GL_POLYGON)
 
-    #     glColor3f(0.0, 1.0, 0.0)
-    #     for i in range(30):
-    #         cosine = radius * cos(i/sides)
-    #         sine = radius * sin(i/sides)
-
-    #         glVertex2f(sine, cosine)
-    #     glEnd()
-    #     glPopMatrix()
-    # for k in value:
-        # glPushMatrix()
-        # glScalef(0.3, 0.3, 0.0)
-        # glTranslated(k, -4.5, 0.0)
-        # posx, posy = 0, 0
-        # sides = 1000
-        # radius = 4
-        # glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # for i in range(30):
-        #     cosine = radius * cos(i/sides)
-        #     sine = radius * sin(i/sides)
-
-        #     glVertex2f(-sine, cosine)
-        # glEnd()
-        # glPopMatrix()
-
-    # for k in value:
-    #     glPushMatrix()
-    #     glScalef(0.3, 0.3, 0.0)
-    #     glTranslated(k, -4.5, 0.0)
-    #     posx, posy = 0, 0
-    #     sides = 32
-    #     radius = 1.5
-    #     glBegin(GL_POLYGON)
-
-    #     glColor3f(0.0, 0.54, 0.0)
-        # for i in range(30):
-        #     cosine = radius * cos(i/sides)
-        #     sine = radius * sin(i/sides)
-
-        #     glVertex2f(sine, cosine)
-        # glEnd()
-        # glPopMatrix()
-    
-    # for k in value:
-    #     glPushMatrix()
-    #     glScalef(0.3, 0.3, 0.0)
-    #     glTranslated(k+0.05, -4.7, 0.0)
-    #     posx, posy = 0, 0
-    #     sides = 32
-    #     radius = 1.5
-    #     glBegin(GL_POLYGON)
-    #     glColor3f(0.0, 0.54, 0.0)
-    #     for i in range(30):
-    #         cosine = radius * cos(i/sides)
-    #         sine = radius * sin(i/sides)
-
-    #         glVertex2f(-sine, cosine)
-    #     glEnd()
-    #     glPopMatrix()
-    # for k in value:
-    #     glPushMatrix()
-    #     glScalef(0.3, 0.3, 0.0)
-    #     glTranslated(k, -3.25, 0.0)
-    #     posx, posy = 0, 0
-    #     sides = 32
-    #     radius = 0.05
-    #     glBegin(GL_POLYGON)
-    #     glColor3f(0.95, 0.36, 0.25)
-    #     for i in range(100):
-    #         cosine = radius * cos(i*2*pi/sides)
-    #         sine = radius * sin(i*2*pi/sides)
-
-    #         glVertex2f(sine, cosine)
-    #     glEnd()
-    #     glPopMatrix()
-
-    # glPushMatrix()
-
-        # glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
-        # glPushMatrix()
-        # glScalef(0.3, 0.3, 0.0)
-        # glTranslated(k, -3.8, 0.0)
-        # glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.2, 0.35, 0.0)
-        # glEnd()
-
-        # glBegin(GL_LINES)
-        # glColor3f(1.0, 1.0, 1.0)
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-        # glEnd()
-        # glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-        # glVertex3f(0.5, 0.35, 0.0)
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glEnd()
-        # glPopMatrix()
-    # glPopMatrix()
-
-
+# dirty particles on the floor
     for i in range(36):
         glPushMatrix()
         if (i%3 == 0):
@@ -612,7 +484,7 @@ def draw():
     glVertex2f(1.05, -0.17)
     glEnd()
     glPopMatrix()
-
+# dimond strips
     glPushMatrix()
     glTranslated(-0.85, -0.5, 0.0)
     glColor3f(1.0, 1.0, 1.0)
@@ -626,265 +498,24 @@ def draw():
 
     glPopMatrix()
 
-    
-    glPushMatrix()
-    glTranslated(-0.2,-0.35,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
+    # Grasses on the floor at required places
+    for i in range(len(grassX)):
+        glPushMatrix()
+        glTranslated(grassX[i],grassY[i],0)
+        glColor3f(0.0,0.5,0.0)
+        glBegin(GL_TRIANGLES)
+        glVertex2f(-0.6,-0.6)
+        glVertex2f(-0.56,-0.46)
+        glColor3f(0.5,0.5,0.0)
+        glVertex2f(-0.62,-0.6)
+        glColor3f(0.0,0.5,0.0)
+        glVertex2f(-0.62,-0.6)
+        glVertex2f(-0.612,-0.58)
+        glVertex2f(-0.63,-0.5)
+        glEnd()
+        glPopMatrix() 
 
-    glPushMatrix()
-    glTranslated(-0.37,-0.33,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-
-    glPushMatrix()
-    glTranslated(-0.1,-0.4,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(0.09,-0.4,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(0.1,-0.3,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    glPushMatrix()
-    glTranslated(0.2,-0.35,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(0.3,-0.35,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(0.42,-0.4,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(0.5,-0.3,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-    
-
-    glPushMatrix()
-    glTranslated(0.9,-0.3,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    glPushMatrix()
-    glTranslated(1.0,-0.35,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    glPushMatrix()
-    glTranslated(1.1,-0.43,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(1.2,-0.3,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    glPushMatrix()
-    glTranslated(1.32,-0.36,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(1.5,-0.36,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(1.6,-0.1,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    glPushMatrix()
-    glTranslated(1.45,-0.2,0)
-    glColor3f(0.0,0.5,0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(-0.6,-0.6)
-    glVertex2f(-0.56,-0.46)
-    glColor3f(0.5,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glColor3f(0.0,0.5,0.0)
-    glVertex2f(-0.62,-0.6)
-    glVertex2f(-0.612,-0.58)
-    glVertex2f(-0.63,-0.5)
-    glEnd()
-    glPopMatrix() 
-
-    
+#     ##########################
 
 
 def display():
@@ -909,9 +540,6 @@ def display():
     circle_bubbles()
     glPopMatrix()
 
-    
-    
-    
     # glutSwapBuffers()
 
     glFlush()
