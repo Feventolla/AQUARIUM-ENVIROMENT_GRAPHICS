@@ -545,6 +545,26 @@ def draw():
         glEnd()
         glPopMatrix()
 
+    for i in range(36):
+        glPushMatrix()
+        if (i%3 == 0):
+            i = i/6
+            glTranslated(-i,-i*10,0)
+        elif (i%2 == 0):
+            i = i/15
+            glTranslated(-i*10,-i/10,0)
+        else:
+            i = i/10
+            glTranslated(-i,-i/10,0)
+        
+        glBegin(GL_LINES)    
+        glColor3f(0.5,0.35,0.05)
+        glVertex2f(0.98,-0.85)
+        glVertex2f(0.99,-0.83)
+        glEnd()
+        glPopMatrix()
+
+
 
     # big rock
     glPushMatrix()
