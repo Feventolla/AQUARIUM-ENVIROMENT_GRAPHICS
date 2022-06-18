@@ -5,8 +5,8 @@ from math import *
 from OpenGL.GL import*
 from OpenGL.GLU import*
 from OpenGL.GLUT import*
-import sys
-# import math
+# import sys
+
 
 global bubblepath
 bubblepathx = -0.5
@@ -21,24 +21,15 @@ fish2pathy = -0.2
 fishX = 4.0
 fishY = 3.0
 
-points = [-0.1, -0.19, -0.28, -0.37, -0.46, -
-          0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
+points = [-0.1, -0.19, -0.28, -0.37, -0.46, -0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
 
 onlyPoints = [-0.1, -0.24, -0.41, -0.56]
 
-#   -0.55, -0.64, -0.73, -0.82, -0.91, -1.0]
 
-points = [-0.1, -0.22, -0.34, -0.45, -0.56, -
-          0.65, -0.74, -0.83, -0.92, -1.0]
+points = [-0.1, -0.22, -0.34, -0.45, -0.56, -0.65, -0.74, -0.83, -0.92, -1.0]
 
-value = [-3.6,  -3.2, -2.8, -2.4, -2.0,
-          -1.6,  -1.2,  -0.8, -0.4, 0.0,
-         0.4, 3.2, 3.6, 2.8,  2.4,
-         2.0,  1.6,  1.2,  0.8
-         ]
-# value1 = [-3.2,  -2.8, -2.4, -
-#           -2.0, -1.6,  -1.2,  -0.8,  2.8,  2.4,
-#           2.0,  1.6,  1.2,  0.8, ]
+value = [-3.6,  -3.2, -2.8, -2.4, -2.0, -1.6,  -1.2,  -0.8, -
+         0.4, 0.0, 0.4, 3.2, 3.6, 2.8,  2.4, 2.0,  1.6,  1.2,  0.8]
 
 
 def init():
@@ -373,7 +364,7 @@ def draw():
             glVertex2f(sine, cosine)
         glEnd()
         glPopMatrix()
-    
+
     for k in value:
         glPushMatrix()
         glScalef(0.3, 0.3, 0.0)
@@ -406,33 +397,7 @@ def draw():
             glVertex2f(sine, cosine)
         glEnd()
         glPopMatrix()
-    # glPushMatrix()
-
-        # glPolygonMode(GL_FRONT_AND_BACK, GL_FILL)
-        # glPushMatrix()
-        # glScalef(0.3, 0.3, 0.0)
-        # glTranslated(k, -3.8, 0.0)
-        # glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.2, 0.35, 0.0)
-        # glEnd()
-
-        # glBegin(GL_LINES)
-        # glColor3f(1.0, 1.0, 1.0)
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-        # glEnd()
-        # glBegin(GL_POLYGON)
-        # glColor3f(0.0, 1.0, 0.0)
-        # glVertex3f(0.4, -0.4, 0.0)
-        # glVertex3f(0.5, 0.35, 0.0)
-        # glVertex3f(0.35, 0.75, 0.0)
-        # glEnd()
-        # glPopMatrix()
-    # glPopMatrix()
+    
 
     # big rock
     glPushMatrix()
@@ -494,8 +459,6 @@ def draw():
     glPopMatrix()
 
 
-
-
 def display():
     glClear(GL_COLOR_BUFFER_BIT)
     glPushMatrix()
@@ -517,8 +480,6 @@ def display():
     glPushMatrix()
     circle_bubbles()
     glPopMatrix()
-
-    
 
     # glutSwapBuffers()
 
