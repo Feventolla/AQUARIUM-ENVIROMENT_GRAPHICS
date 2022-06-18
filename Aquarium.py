@@ -28,10 +28,8 @@ onlyPoints = [-0.1, -0.24, -0.41, -0.56]
 
 points = [-0.1, -0.22, -0.34, -0.45, -0.56, -0.65, -0.74, -0.83, -0.92, -1.0]
 
-<<<<<<< HEAD
 value = [-3.6,  -3.2, -2.8, -2.4, -2.0, -1.6,  -1.2,  -0.8, -
          0.4, 0.0, 0.4, 3.2, 3.6, 2.8,  2.4, 2.0,  1.6,  1.2,  0.8]
-=======
 
 value = [-3.6, -3.6,  -2.4, -1.2
          #  -1.8, -1.2, -0.8, 0.0, 0.4,
@@ -62,7 +60,6 @@ grassY = [-0.35,-0.33,-0.4, -0.4,-0.3,-0.35,-0.35,-0.4,-0.3,
             -0.3,-0.35,-0.43,-0.3,-0.36,-0.36,-0.1,-0.21]
 
 
->>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
 
 
 def init():
@@ -437,16 +434,29 @@ def draw():
         glVertex2f(0.99,-0.83)
         glEnd()
         glPopMatrix()
-<<<<<<< HEAD
     
-=======
 
 
->>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
 
     # big rock
+    glPushMatrix()
+    glScalef(1.0, 1.0, 0.0)
+    glTranslated(0.1, -1.0, 0.0)
+    posx, posy = 0, 0
+    sides = 32
+    radius = 0.2
+    glBegin(GL_POLYGON)
+    glColor3f(0.36, 0.25, 0.20)
+    for i in range(100):
+        cosine = radius * cos(i*2*pi/sides)+posx
+        sine = radius * sin(i*2*pi/sides)+posy
+        glVertex2f(cosine, sine)
+    glEnd()
+    glPopMatrix()
+
     # small rock
     glPushMatrix()
+    glScalef(1.0, 1.0, 0.0)
     glTranslated(-0.9, -1.0, 0.0)
     posx, posy = 0, 0
     sides = 32
@@ -505,12 +515,9 @@ def draw():
         glEnd()
         glPopMatrix() 
 
-<<<<<<< HEAD
-=======
-#     ##########################
 
 
->>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
+
 def display():
     glClear(GL_COLOR_BUFFER_BIT)
     glPushMatrix()
@@ -529,3 +536,26 @@ def display():
     fish3()
     glPopMatrix()
 
+    glPushMatrix()
+    circle_bubbles()
+    glPopMatrix()
+
+    # glutSwapBuffers()
+
+    glFlush()
+
+
+def main():
+    glutInit()
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE)
+    glutInitWindowSize(900, 600)
+    glutInitWindowPosition(50, 50)
+    glutCreateWindow("Aquarium Environment")
+    init()
+    glutDisplayFunc(display)
+    glutTimerFunc(35, move_time, 0)
+
+    glutMainLoop()
+
+
+main()
