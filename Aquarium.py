@@ -28,8 +28,41 @@ onlyPoints = [-0.1, -0.24, -0.41, -0.56]
 
 points = [-0.1, -0.22, -0.34, -0.45, -0.56, -0.65, -0.74, -0.83, -0.92, -1.0]
 
+<<<<<<< HEAD
 value = [-3.6,  -3.2, -2.8, -2.4, -2.0, -1.6,  -1.2,  -0.8, -
          0.4, 0.0, 0.4, 3.2, 3.6, 2.8,  2.4, 2.0,  1.6,  1.2,  0.8]
+=======
+
+value = [-3.6, -3.6,  -2.4, -1.2
+         #  -1.8, -1.2, -0.8, 0.0, 0.4,
+         #          0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
+         ]
+value1 = [-3.6,   -2.4, -1.2, 0.3
+          # -0.6, -0.2, 0.4,
+          #           0.8,  1.2,  1.6, 2.0, 2.4, 2.8, 3.2, 3.6
+          ]
+
+
+value = [-3.6, -3.4, -3.2, - 3.0, -2.8, -2.6, -2.4, -
+         2.2, -2.0, -1.8, -1.6, -1.4, -1.2, -1.0, -0.8, -0.6, 2.8, 2.6, 2.4,
+         2.2, 2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 0.8, 0.6]
+
+
+
+value = [-3.6,  -3.2, -2.8, -2.4, -2.0,
+          -1.6,  -1.2,  -0.8, -0.4, 0.0,
+         0.4, 3.2, 3.6, 2.8,  2.4,
+         2.0,  1.6,  1.2,  0.8
+         ]
+
+grassX = [-0.2,-0.37,-0.1,0.09,0.1,0.2,0.3,0.42,0.5,
+          0.9,1,1.1,1.2,1.32,1.5,1.6,1.45]
+
+grassY = [-0.35,-0.33,-0.4, -0.4,-0.3,-0.35,-0.35,-0.4,-0.3,
+            -0.3,-0.35,-0.43,-0.3,-0.36,-0.36,-0.1,-0.21]
+
+
+>>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
 
 
 def init():
@@ -45,7 +78,7 @@ def move_time(key):
         bubblepathx = -0.6
     bubblepathx += 0.03
 
-    if(largebubblepathx > 2):
+    if(largebubblepathx > 2.0):
         largebubblepathx = -.5
     largebubblepathx += 0.03
 
@@ -70,7 +103,7 @@ def move_time(key):
     fish2pathy += 0.004
 
     glutPostRedisplay()
-    glutTimerFunc(10, move_time, 0)
+    glutTimerFunc(25, move_time, 0)
 
 
 def circle_bubbles():
@@ -153,7 +186,7 @@ def fish1():
     glTranslated(fish1path, 0.0, 0.0)
     # glColor3f(0.4, 0.0, 0.0)
     # first fish
-    glColor3f(0.0, 0.0, 0.1)
+    glColor3f(0.0, 0.05, 0.1)
     glBegin(GL_POLYGON)
     glVertex2f(0.0, -0.0)
     glVertex2f(0.2, 0.1)
@@ -230,13 +263,24 @@ def fish2():
     glColor4f(0.1, 0.25, 0.20, 0.5)
     glVertex2f(-0.3, -0.53)
 
+
+
     glEnd()
+
     glColor3f(1, 1, 1)
     glPointSize(3)
+    glBegin(GL_POINTS)
+    glVertex2f(0.4, -0.6)
+    glEnd()
+
+    
+   
+
 
     glBegin(GL_POINTS)
     glVertex2f(0.4, -0.6)
     glEnd()
+
 
     glPopMatrix()
     glFlush()
@@ -303,6 +347,12 @@ def fish3():
     glVertex2f(0.22, 0.27)
     glEnd()
 
+    glColor3f(0.0, 0.0, 0.0)
+    glBegin(GL_LINES)
+    glVertex2f(0.041, 0.253)
+    glVertex2f(0.075, 0.253)
+    glEnd()
+
 
 def draw():
     glClear(GL_COLOR_BUFFER_BIT)
@@ -333,7 +383,7 @@ def draw():
     for k in value:
         glPushMatrix()
         glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -3.0, 0.0)
+        glTranslated(k, -3.2, 0.0)
         posx, posy = 0, 0
         sides = 32
         radius = 0.06
@@ -347,77 +397,56 @@ def draw():
         glEnd()
         glPopMatrix()
 
-    for k in value:
+
+
+# dirty particles on the floor
+    for i in range(36):
         glPushMatrix()
-        glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -4.5, 0.0)
-        posx, posy = 0, 0
-        sides = 32
-        radius = 1.5
-        glBegin(GL_POLYGON)
-
-        glColor3f(0.0, 0.54, 0.0)
-        for i in range(30):
-            cosine = radius * cos(i/sides)
-            sine = radius * sin(i/sides)
-
-            glVertex2f(sine, cosine)
+        if (i%3 == 0):
+            i = i/6
+            glTranslated(i,i*10,0)
+        elif (i%2 == 0):
+            i = i/15
+            glTranslated(i*10,i/10,0)
+        else:
+            i = i/10
+            glTranslated(i,i/10,0)
+        
+        glBegin(GL_LINES)    
+        glColor3f(0.5,0.35,0.05)
+        glVertex2f(-0.9,-0.85)
+        glVertex2f(-0.89,-0.83)
         glEnd()
         glPopMatrix()
 
-    for k in value:
+    for i in range(36):
         glPushMatrix()
-        glScalef(0.3, 0.3, 0.0)
-        glTranslated(k+0.05, -4.7, 0.0)
-        posx, posy = 0, 0
-        sides = 32
-        radius = 1.5
-        glBegin(GL_POLYGON)
-        glColor3f(0.0, 0.54, 0.0)
-        for i in range(30):
-            cosine = radius * cos(i/sides)
-            sine = radius * sin(i/sides)
-
-            glVertex2f(-sine, cosine)
+        if (i%3 == 0):
+            i = i/6
+            glTranslated(-i,-i*10,0)
+        elif (i%2 == 0):
+            i = i/15
+            glTranslated(-i*10,-i/10,0)
+        else:
+            i = i/10
+            glTranslated(-i,-i/10,0)
+        
+        glBegin(GL_LINES)    
+        glColor3f(0.5,0.35,0.05)
+        glVertex2f(0.98,-0.85)
+        glVertex2f(0.99,-0.83)
         glEnd()
         glPopMatrix()
-    for k in value:
-        glPushMatrix()
-        glScalef(0.3, 0.3, 0.0)
-        glTranslated(k, -3.25, 0.0)
-        posx, posy = 0, 0
-        sides = 32
-        radius = 0.05
-        glBegin(GL_POLYGON)
-        glColor3f(0.95, 0.36, 0.25)
-        for i in range(100):
-            cosine = radius * cos(i*2*pi/sides)
-            sine = radius * sin(i*2*pi/sides)
-
-            glVertex2f(sine, cosine)
-        glEnd()
-        glPopMatrix()
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
 
     # big rock
-    glPushMatrix()
-    glScalef(1.0, 1.0, 0.0)
-    glTranslated(0.1, -1.0, 0.0)
-    posx, posy = 0, 0
-    sides = 32
-    radius = 0.2
-    glBegin(GL_POLYGON)
-    glColor3f(0.36, 0.25, 0.20)
-    for i in range(100):
-        cosine = radius * cos(i*2*pi/sides)+posx
-        sine = radius * sin(i*2*pi/sides)+posy
-        glVertex2f(cosine, sine)
-    glEnd()
-    glPopMatrix()
-
     # small rock
     glPushMatrix()
-    glScalef(1.0, 1.0, 0.0)
     glTranslated(-0.9, -1.0, 0.0)
     posx, posy = 0, 0
     sides = 32
@@ -445,7 +474,7 @@ def draw():
     glVertex2f(1.05, -0.17)
     glEnd()
     glPopMatrix()
-
+# dimond strips
     glPushMatrix()
     glTranslated(-0.85, -0.5, 0.0)
     glColor3f(1.0, 1.0, 1.0)
@@ -456,9 +485,32 @@ def draw():
     glVertex2f(0.87, -0.17)
 
     glEnd()
+
     glPopMatrix()
 
+    # Grasses on the floor at required places
+    for i in range(len(grassX)):
+        glPushMatrix()
+        glTranslated(grassX[i],grassY[i],0)
+        glColor3f(0.0,0.5,0.0)
+        glBegin(GL_TRIANGLES)
+        glVertex2f(-0.6,-0.6)
+        glVertex2f(-0.56,-0.46)
+        glColor3f(0.5,0.5,0.0)
+        glVertex2f(-0.62,-0.6)
+        glColor3f(0.0,0.5,0.0)
+        glVertex2f(-0.62,-0.6)
+        glVertex2f(-0.612,-0.58)
+        glVertex2f(-0.63,-0.5)
+        glEnd()
+        glPopMatrix() 
 
+<<<<<<< HEAD
+=======
+#     ##########################
+
+
+>>>>>>> ec8780f8a35db9eaf408239342ee32b517604a92
 def display():
     glClear(GL_COLOR_BUFFER_BIT)
     glPushMatrix()
@@ -477,26 +529,3 @@ def display():
     fish3()
     glPopMatrix()
 
-    glPushMatrix()
-    circle_bubbles()
-    glPopMatrix()
-
-    # glutSwapBuffers()
-
-    glFlush()
-
-
-def main():
-    glutInit()
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE)
-    glutInitWindowSize(900, 600)
-    glutInitWindowPosition(50, 50)
-    glutCreateWindow("Aquarium Environment")
-    init()
-    glutDisplayFunc(display)
-    glutTimerFunc(35, move_time, 0)
-
-    glutMainLoop()
-
-
-main()
